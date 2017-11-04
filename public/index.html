@@ -1,0 +1,112 @@
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel='stylesheet' href='shoes.css'>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
+<title> Shoe Api </title>
+
+<body>
+<h1> Shoe Catalogue </h1>
+
+<script id='myTemplate' type='text/handlebars-x'>
+<select id='myBrand' onchange='myFunction()'>
+<option class='brands' disabled selected>BRANDS</option>
+{{#each shoeBrandKeys}}
+<option class='brands' value='{{this}}'>{{this}}</option>
+{{/each}}
+</select><br><br>
+<select id='mySize'>
+<option class='size' disabled selected>SIZE</option>
+{{#each shoeSizeKeys}}
+<option class='size' value='{{this}}'>{{this}}</option>
+{{/each}}
+</select><br><br>
+<select id='myColor'>
+<option class='color' disabled selected>COLOR</option>
+{{#each shoeColorKeys}}
+<option class='brands' value='{{this}}'>{{this}}</option>
+{{/each}}
+</select>
+</script>
+
+<div id='dropOut'> </div>
+
+<script class='searchTemplate' type='text/x-handlebars-templates'>
+<table>
+  <tr>
+<thead>
+<th> BRAND </th>
+<th> SIZE </th>
+<th> PRICE </th>
+<th> COLOR </th>
+<th> STOCK </th>
+</thead>
+<tr>
+{{#each shoes}}
+<tr>
+<td>{{brand}}</td>
+<td>{{size}}</td>
+<td>{{price}}</td>
+<td>{{color}}</td>
+<td>{{in_stock}}</td>
+</tr>
+{{/each}}
+
+</table>
+</script>
+
+<div class='output'> </div>
+
+<script type="text/javascript">
+function open_model(id){
+  var e = document.getElementById('model');
+
+  if(e.style.display == 'none'){
+    e.style.display = 'block'
+  }
+
+  else{
+    e.style.display = 'none'
+  }
+}
+</script>
+
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Stock</button>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <div class="modal-footer">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+  <h3> Add Stock </h3>
+  <div class="form-group">
+<label for="brand">Brand:</label>
+    <input type="text" placeholder="please enter brand"> </input><br>
+  </div>
+  <div class="form-group">
+<label for="size">Size:</label>
+   <input type="text" placeholder="please enter size"> </input><br>
+  </div>
+  <div class="form-group">
+    <label for="Color">Color:</label>
+     <input type="text" placeholder="please enter color"> </input><br>
+
+  </div>
+  <input type="submit" value="ADD STOCK"> </input>
+
+
+<script src="api.js"> </script>
+</body>
+</html>
