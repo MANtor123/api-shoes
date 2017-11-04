@@ -58,19 +58,6 @@
 
 <div class='output'> </div>
 
-<script type="text/javascript">
-function open_model(id){
-  var e = document.getElementById('model');
-
-  if(e.style.display == 'none'){
-    e.style.display = 'block'
-  }
-
-  else{
-    e.style.display = 'none'
-  }
-}
-</script>
 
 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Stock</button>
 
@@ -93,18 +80,29 @@ function open_model(id){
   <h3> Add Stock </h3>
   <div class="form-group">
 <label for="brand">Brand:</label>
-    <input type="text" placeholder="please enter brand"> </input><br>
+    <input class='brand' type="text" placeholder="please enter brand"> </input><br>
   </div>
   <div class="form-group">
 <label for="size">Size:</label>
-   <input type="text" placeholder="please enter size"> </input><br>
+   <input class='size' type="text" placeholder="please enter size"> </input><br>
   </div>
   <div class="form-group">
-    <label for="Color">Color:</label>
-     <input type="text" placeholder="please enter color"> </input><br>
-
+    <label  for="Color">Color:</label>
+     <input class='color' type="text" placeholder="please enter color"> </input><br>
   </div>
-  <input type="submit" value="ADD STOCK"> </input>
+
+  <div class="form-group">
+    <label class='quantity' for="Color">Quantity:</label>
+     <input class='in_stock' type="text" placeholder="please enter color"> </input><br>
+  </div>
+
+  <div class="form-group">
+    <label  for="Color">Price:</label>
+     <input class='price' type="text" placeholder="please enter color"> </input><br>
+  </div>
+
+
+  <input id='add' type="button" value="ADD STOCK"> </input>
 
 
 <script src="api.js"> </script>
