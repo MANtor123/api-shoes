@@ -60,7 +60,7 @@ app.get('/api/shoes', function(req, res) {
 
 app.post('/api/shoes', function(req, res) {
     var stock = req.body
-    console.log(stock);
+    //console.log(stock);
 
     shoeSche.create({
       brand: stock.brand,
@@ -72,7 +72,7 @@ app.post('/api/shoes', function(req, res) {
       if (err) {
         console.log(err);
       } else {
-        res.json(results)
+        res.json({results})
       }
     });
 
