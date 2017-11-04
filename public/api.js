@@ -1,15 +1,15 @@
 $(function(){
-//first template
 
-//second template
+//first template
 var all = document.querySelector('#button');
 var searchTemplate = document.querySelector('.searchTemplate');
 var searchTemp = Handlebars.compile(searchTemplate.innerHTML);
 var output = document.querySelector('.output');
 
+//second template
 var myTemplate = document.querySelector('#myTemplate');
 var temp = Handlebars.compile(myTemplate.innerHTML);
-var display = document.querySelector('.block');
+var dropOut = document.querySelector('.dropOut');
 
 var add = document.querySelector('#add')
 
@@ -59,6 +59,8 @@ $.ajax({
 
 window.location.reload()
 });
+
+// *******************************************************************************
 // var brands = [];
 // var brandMap = {};
 //
@@ -72,7 +74,7 @@ window.location.reload()
 // }
 // return brands;
 // };
-//
+
 // function uniqColor(){
 // var colors = [];
 // var colorMap = {};
@@ -101,7 +103,7 @@ window.location.reload()
 // }
 // return size;
 // };
-//
+
 // function populateDropDowns(){
 //
 //   var brand = uniqBrand();
