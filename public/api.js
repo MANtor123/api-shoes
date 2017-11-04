@@ -11,8 +11,10 @@ var myTemplate = document.querySelector('#myTemplate');
 var temp = Handlebars.compile(myTemplate.innerHTML);
 var display = document.querySelector('.block');
 
-//var dropOut = document.querySelector('#dropOut')
+var add = document.querySelector('#add')
 
+//var dropOut = document.querySelector('#dropOut')
+// function displayTable(){
   $.ajax({
     url: "api/shoes",
     type: "get",
@@ -24,16 +26,39 @@ var display = document.querySelector('.block');
 
     }
   })
+  // displayTable()
+// }
 
+$('#add').click(function(){
+  var brand = document.querySelector('.brand').value
+  var color = document.querySelector('.color').value
+  var sizes = document.querySelector('.size').value
+  var in_stock = document.querySelector('.in_stock').value
+  var price = document.querySelector('.price').value
+
+  var newShoes ={
+    brand: brand,
+    color: color,
+    size: sizes,
+    in_stock: in_stock,
+    price: price
+}
 
 $.ajax({
   url: "api/shoes",
   type: "post",
+  data: newShoes,
   dataType: "json",
   success:function(data){
+}
 
-  }
 })
+
+
+    //console.log(data);
+
+window.location.reload()
+});
 // var brands = [];
 // var brandMap = {};
 //
