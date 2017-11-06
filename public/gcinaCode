@@ -6,10 +6,10 @@ var searchTemplate = document.querySelector('.searchTemplate');
 var searchTemp = Handlebars.compile(searchTemplate.innerHTML);
 var output = document.querySelector('.output');
 
-//
+//second template
 var myTemplate = document.querySelector('#myTemplate');
 var temp = Handlebars.compile(myTemplate.innerHTML);
-var display = document.querySelector('.block');
+var dropOut = document.querySelector('.dropOut');
 
 var add = document.querySelector('#add')
 
@@ -50,50 +50,15 @@ $.ajax({
   data: newShoes,
   dataType: "json",
   success:function(data){
+
 }
 
 })
+});
 
 
     //console.log(data);
 
-});
-// var brands = [];
-// var brandMap = {};
-//
-// for(var i=0; i<shoes.length; i++){
-//   var shoe = shoes[i]
-//   if(brandMap[shoe.brand] === undefined){
-//     brandMap[shoe.brand] = shoe.brand;
-//     brands.push(shoe.brand);
-//   }
-//
-// }
-// return brands;
-// };
-//
-// function uniqColor(){
-// var colors = [];
-// var colorMap = {};
-//
-// for(var i=0; i<shoes.length; i++){
-//   var shoe = shoes[i]
-//   if(colorMap[shoe.color] === undefined){
-//     colorMap[shoe.color] = shoe.color;
-//     colors.push(shoe.color);
-//   }
-// }
-// return colors;
-// };
-//
-// function uniqSize(){
-// var size = [];
-// var sizeMap = {};
-//
-// for(var i=0; i<shoes.length; i++){
-//   var shoe = shoes[i]
-//   if(sizeMap[shoe.size] === undefined){
-//     sizeMap
 
 $.ajax({
   url: "api/shoes/dropDown",
@@ -101,12 +66,11 @@ $.ajax({
   dataType: "json",
   success:function(data){
 
-    display.innerHTML = temp({
+    dropOut.innerHTML = temp({
       shoeBrandKeys: data.UniQbrand,
       shoeSizeKeys: data.UniQsize
     })
-    window.location.reload()
 }
 })
-
+// window.location.reload()
 });

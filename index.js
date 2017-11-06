@@ -52,107 +52,143 @@ app.get('/api/shoes', function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.json({results:results})
+      res.json({
+        results: results
+      })
     }
   });
 
 })
 
 app.post('/api/shoes', function(req, res) {
-    var stock = req.body
-    //console.log(stock);
+  var stock = req.body
+  //console.log(stock);
 
-    shoeSche.create({
-      brand: stock.brand,
-      color: stock.color,
-      price: stock.price,
-      size: stock.size,
-      in_stock: stock.in_stock
-    }, function(err, results) {
-      if (err) {
-        console.log(err);
-      } else {
-        res.json({results})
-      }
-    });
-
-});
-
-app.get('/api/shoes/brand/:brandname', function(req, res) {
-    var brand = req.params.brandname
-
-    shoeSche.find({
-      brand: brand
-    }, function(err, results) {
-      if (err) {
-        console.log(err);
-      }
+  shoeSche.create({
+    brand: stock.brand,
+    color: stock.color,
+    price: stock.price,
+    size: stock.size,
+    in_stock: stock.in_stock
+  }, function(err, results) {
+    if (err) {
+      console.log(err);
+    } else {
       res.json({
         results
       })
-    })
+    }
+  });
+
 });
 
-  app.get('/api/shoes/brand/:brandname/size/:size', function(req, res) {
-    var brand = req.params.brandname
-    var size = req.params.size
+app.get('/api/shoes/dropDown', function(req, res, next) {
 
-    shoeSche.find({
-      brand: brand,
-      size: size
-    }, function(err, results) {
-      if (err) {
-        console.log(err);
-      }
+        shoeSche.find({}, function(err, result) {
+          if (err) {
+            return next(err)
+          } else {
+            var UniQbrand = [];
+            var mapBrand = {};
 
-      res.json({
-        results
-      })
-    })
-  });
+            for (var i = 0; i < result.length; i++) {
+              var brands = result[i]
+              if (mapBrand[brands.brand] == undefined) {
+                mapBrand[brands.brand] = brands.brand
+                UniQbrand.push(brands.brand)
+              }
+            }
 
-  app.post('/api/shoes/sold/:id', function(req, res) {
+            var UniQsize = [];
+            var mapSize = {};
 
+            for (var i = 0; i < result.length; i++) {
+              var sizes = result[i]
+              if (mapBrand[sizes.size] == undefined) {
+                mapBrand[sizes.size] = sizes.size
+                UniQsize.push(sizes.size)
+              }
+            }
 
-    var id = req.params.id
+            res.json({UniQbrand, UniQsize})
+          }
+        })
 
-
-    shoeSche.findOneAndUpdate({
-      _id: id
-    }, {
-      $inc: {
-        in_stock: -1
-      }
-    }, {
-      upsert: false
-    }, function(err, results) {
-      if (err) {
-        console.log(err);
-      }
-
-      else{
-        res.json({
-        results:  results
-      });
-      }
-    })
-
-  });
-
-
-  // res.json({
-  //   response: 'You sent me a get reponce'
-  // })
-
-//})
-
-
-
-const port = process.env.PORT || 5001;
-app.use(function(err, req, res, next) {
-  res.status(500).send(err.stack);
 })
 
-app.listen(port, function() {
-  console.log('Example app listening at :' + port)
-});
+      app.get('/api/shoes/brand/:brandname', function(req, res) {
+        var brand = req.params.brandname
+
+        shoeSche.find({
+          brand: brand
+        }, function(err, results) {
+          if (err) {
+            console.log(err);
+          }
+          res.json({
+            results
+          })
+        })
+      });
+
+      app.get('/api/shoes/brand/:brandname/size/:size', function(req, res) {
+        var brand = req.params.brandname
+        var size = req.params.size
+
+        shoeSche.find({
+          brand: brand,
+          size: size
+        }, function(err, results) {
+          if (err) {
+            console.log(err);
+          }
+
+          res.json({
+            results
+          })
+        })
+      });
+
+      app.post('/api/shoes/sold/:id', function(req, res) {
+
+
+        var id = req.params.id
+
+
+        shoeSche.findOneAndUpdate({
+          _id: id
+        }, {
+          $inc: {
+            in_stock: -1
+          }
+        }, {
+          upsert: false
+        }, function(err, results) {
+          if (err) {
+            console.log(err);
+          } else {
+            res.json({
+              results: results
+            });
+          }
+        })
+
+      });
+
+
+      // res.json({
+      //   response: 'You sent me a get reponce'
+      // })
+
+      //})
+
+
+
+      const port = process.env.PORT || 5001;
+      app.use(function(err, req, res, next) {
+        res.status(500).send(err.stack);
+      })
+
+      app.listen(port, function() {
+        console.log('Example app listening at :' + port)
+      });
