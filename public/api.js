@@ -13,6 +13,12 @@ var display = document.querySelector('.block');
 
 var add = document.querySelector('#add')
 
+var brandFilter = document.querySelector('#brandFilter')
+var brandButton = document.querySelector('#brandButton')
+
+var sizeFilter = document.querySelector('#sizeFilter')
+var sizeBUtton = document.querySelector('#sizeButton')
+
 //var dropOut = document.querySelector('#dropOut')
 // function displayTable(){
   $.ajax({
@@ -28,6 +34,43 @@ var add = document.querySelector('#add')
   })
   // displayTable()
 // }
+
+
+$("#brandButton").click(function(){
+var brandSearch = brandFilter.value;
+
+$.ajax({
+  url: "api/shoes/brand/" + brandSearch,
+  type: "GET",
+  dataType: "json",
+  success:function(data){
+    output.innerHTML = searchTemp({
+      shoes: data.results
+    })
+}
+})
+
+
+})
+
+
+$("#sizeButton").click(function(){
+var sizeSearch = sizeFilter.value;
+
+$.ajax({
+  url: "api/shoes/size/" + sizeSearch,
+  type: "GET",
+  dataType: "json",
+  success:function(data){
+    output.innerHTML = searchTemp({
+      shoes: data.results
+    })
+}
+})
+
+
+})
+
 
 $('#add').click(function(){
   var brand = document.querySelector('.brand').value
@@ -51,9 +94,9 @@ $.ajax({
   dataType: "json",
   success:function(data){
 }
-
 })
 
+window.location.reload()
 
     //console.log(data);
 
@@ -95,18 +138,18 @@ $.ajax({
 //   if(sizeMap[shoe.size] === undefined){
 //     sizeMap
 
-$.ajax({
-  url: "api/shoes/dropDown",
-  type: "get",
-  dataType: "json",
-  success:function(data){
-
-    display.innerHTML = temp({
-      shoeBrandKeys: data.UniQbrand,
-      shoeSizeKeys: data.UniQsize
-    })
-    window.location.reload()
-}
-})
+// $.ajax({
+//   url: "api/shoes/dropDown",
+//   type: "get",
+//   dataType: "json",
+//   success:function(data){
+//
+//     display.innerHTML = temp({
+//       shoeBrandKeys: data.UniQbrand,
+//       shoeSizeKeys: data.UniQsize
+//     })
+//     // window.location.reload()
+// }
+// })
 
 });

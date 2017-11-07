@@ -131,6 +131,21 @@ app.get('/api/shoes/dropDown', function(req, res, next) {
         })
       });
 
+      app.get('/api/shoes/size/:size', function(req, res) {
+        var size = req.params.size
+
+        shoeSche.find({
+          size: size
+        }, function(err, results) {
+          if (err) {
+            console.log(err);
+          }
+          res.json({
+            results
+          })
+        })
+      });
+
       app.get('/api/shoes/brand/:brandname/size/:size', function(req, res) {
         var brand = req.params.brandname
         var size = req.params.size
