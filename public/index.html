@@ -33,7 +33,7 @@
 <td>{{price}}</td>
 <td>{{color}}</td>
 <td>{{in_stock}}</td>
-<td> <button id='btn' onclick ='window.location.reload()' value="{{_id}}"> </button> </td>
+<td> <button id='btn' onclick ='window.location.reload()' value="{{_id}}">BUY </button> </td>
 </tbody>
 </tr>
 {{/each}}
@@ -45,13 +45,14 @@
 <div class='output'> </div>
 
 
-Brand Filter: <input type='text' id="brandFilter" placeholder="enter brand"> </input>
+Brand Filter: <input type='text' id="brandFilter" placeholder="enter brand" required=''> </input>
               <input type="submit" id="brandButton" value="Search"> </input><br><br>
 
 Size Filter: <input type='text' id='sizeFilter' placeholder="enter size"> </input>
               <input type="submit" id="sizeButton" value="Search"> </input><br><br>
 
 
+<form class="form">
 <div class="container">
 
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">ADD STOCK</button>
@@ -73,7 +74,7 @@ Size Filter: <input type='text' id='sizeFilter' placeholder="enter size"> </inpu
   </div>
   <div class="form-group">
 <label for="size">Size:</label>
-   <input class='size' type="text" placeholder="please enter size"> </input><br>
+   <input class='size' type="number" placeholder="please enter size"> </input><br>
   </div>
   <div class="form-group">
     <label  for="Color">Color:</label>
@@ -81,13 +82,13 @@ Size Filter: <input type='text' id='sizeFilter' placeholder="enter size"> </inpu
   </div>
 
   <div class="form-group">
-    <label class='quantity' for="Color">Quantity:</label>
-     <input class='in_stock' type="number" placeholder="please enter number of stock shoes"> </input><br>
+    <label class='quantity' for="in_stock">Quantity:</label>
+     <input class='in_stock' type="number" placeholder="please enter stock"> </input><br>
   </div>
 
   <div class="form-group">
     <label  for="Color">Price:</label>
-     <input class='price' type="text" placeholder="please enter "> </input><br>
+     <input class='price' type="number" placeholder="please enter price"> </input><br>
   </div>
 
   <input id='add' type="button" value="ADD STOCK"> </input>
@@ -96,6 +97,7 @@ Size Filter: <input type='text' id='sizeFilter' placeholder="enter size"> </inpu
   </div>
 
 </div>
+</form>
 
 <script src="api.js"> </script>
 </body>
