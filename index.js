@@ -181,7 +181,13 @@ app.get('/api/shoes/dropDown', function(req, res, next) {
         }, function(err, results) {
           if (err) {
             console.log(err);
-          } else {
+          }
+
+          if(results.in_stock <= 1){
+            results.remove()
+          }
+
+          else {
             res.json({
               results: results
             });

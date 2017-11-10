@@ -6,11 +6,6 @@ var searchTemplate = document.querySelector('.searchTemplate');
 var searchTemp = Handlebars.compile(searchTemplate.innerHTML);
 var output = document.querySelector('.output');
 
-//
-var myTemplate = document.querySelector('#myTemplate');
-var temp = Handlebars.compile(myTemplate.innerHTML);
-var display = document.querySelector('.block');
-
 var add = document.querySelector('#add')
 
 var brandFilter = document.querySelector('#brandFilter')
@@ -18,6 +13,8 @@ var brandButton = document.querySelector('#brandButton')
 
 var sizeFilter = document.querySelector('#sizeFilter')
 var sizeBUtton = document.querySelector('#sizeButton')
+
+var btn = document.querySelector('#btn')
 
 //var dropOut = document.querySelector('#dropOut')
 // function displayTable(){
@@ -71,6 +68,19 @@ $.ajax({
 
 })
 
+$('.output').on('click',function(e){
+var soldShoe = e.target.value
+
+  $.ajax({
+    url: "api/shoes/sold/" + soldShoe,
+    type: "post",
+    dataType: "json",
+    success:function(data){
+    
+  }
+  })
+})
+
 
 $('#add').click(function(){
   var brand = document.querySelector('.brand').value
@@ -101,55 +111,7 @@ window.location.reload()
     //console.log(data);
 
 });
-// var brands = [];
-// var brandMap = {};
-//
-// for(var i=0; i<shoes.length; i++){
-//   var shoe = shoes[i]
-//   if(brandMap[shoe.brand] === undefined){
-//     brandMap[shoe.brand] = shoe.brand;
-//     brands.push(shoe.brand);
-//   }
-//
-// }
-// return brands;
-// };
-//
-// function uniqColor(){
-// var colors = [];
-// var colorMap = {};
-//
-// for(var i=0; i<shoes.length; i++){
-//   var shoe = shoes[i]
-//   if(colorMap[shoe.color] === undefined){
-//     colorMap[shoe.color] = shoe.color;
-//     colors.push(shoe.color);
-//   }
-// }
-// return colors;
-// };
-//
-// function uniqSize(){
-// var size = [];
-// var sizeMap = {};
-//
-// for(var i=0; i<shoes.length; i++){
-//   var shoe = shoes[i]
-//   if(sizeMap[shoe.size] === undefined){
-//     sizeMap
 
-// $.ajax({
-//   url: "api/shoes/dropDown",
-//   type: "get",
-//   dataType: "json",
-//   success:function(data){
-//
-//     display.innerHTML = temp({
-//       shoeBrandKeys: data.UniQbrand,
-//       shoeSizeKeys: data.UniQsize
-//     })
-//     // window.location.reload()
-// }
-// })
+
 
 });

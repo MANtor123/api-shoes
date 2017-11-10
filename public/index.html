@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -9,31 +10,11 @@
 <body>
 <h1> Shoe Catalogue </h1>
 
-<script id='myTemplate' type='text/x-handlebars-templates'>
-<select id='myBrand' onchange='myFunction()'>
-<option class='brands' disabled selected>BRANDS</option>
-{{#each shoeBrandKeys}}
-<option class='brands' value='{{this}}'>{{this}}</option>
-{{/each}}
-</select>
-<select id='mySize'>
-<option class='size' disabled selected>SIZE</option>
-{{#each shoeSizeKeys}}
-<option class='size' value='{{this}}'>{{this}}</option>
-{{/each}}
-</select>
-</script>
-
-<div class='block'> </div>
-
-Brand Filter: <input type='text' id="brandFilter" placeholder="enter brand"> </input>
-              <input type="submit" id="brandButton" value=""> </input><br><br>
-
-Size Filter: <input type='text' id='sizeFilter' placeholder="enter size"> </input>
-              <input type="submit" id="sizeButton" value=""> </input>
 
 <script class='searchTemplate' type='text/x-handlebars-templates'>
-<table>
+
+<div class="container">
+<table class="table table-hover">
   <tr>
 <thead>
 <th> BRAND </th>
@@ -41,6 +22,7 @@ Size Filter: <input type='text' id='sizeFilter' placeholder="enter size"> </inpu
 <th> PRICE </th>
 <th> COLOR </th>
 <th> STOCK </th>
+<th> PURCHASE </th>
 </thead>
 <tr>
 {{#each shoes}}
@@ -51,14 +33,23 @@ Size Filter: <input type='text' id='sizeFilter' placeholder="enter size"> </inpu
 <td>{{price}}</td>
 <td>{{color}}</td>
 <td>{{in_stock}}</td>
+<td> <button id='btn' onclick ='window.location.reload()' value="{{_id}}"> </button> </td>
 </tbody>
 </tr>
 {{/each}}
 
 </table>
+</div>
 </script>
 
 <div class='output'> </div>
+
+
+Brand Filter: <input type='text' id="brandFilter" placeholder="enter brand"> </input>
+              <input type="submit" id="brandButton" value="Search"> </input><br><br>
+
+Size Filter: <input type='text' id='sizeFilter' placeholder="enter size"> </input>
+              <input type="submit" id="sizeButton" value="Search"> </input><br><br>
 
 
 <div class="container">
@@ -91,12 +82,12 @@ Size Filter: <input type='text' id='sizeFilter' placeholder="enter size"> </inpu
 
   <div class="form-group">
     <label class='quantity' for="Color">Quantity:</label>
-     <input class='in_stock' type="text" placeholder="please enter color"> </input><br>
+     <input class='in_stock' type="number" placeholder="please enter number of stock shoes"> </input><br>
   </div>
 
   <div class="form-group">
     <label  for="Color">Price:</label>
-     <input class='price' type="text" placeholder="please enter color"> </input><br>
+     <input class='price' type="text" placeholder="please enter "> </input><br>
   </div>
 
   <input id='add' type="button" value="ADD STOCK"> </input>
@@ -105,8 +96,6 @@ Size Filter: <input type='text' id='sizeFilter' placeholder="enter size"> </inpu
   </div>
 
 </div>
-
-
 
 <script src="api.js"> </script>
 </body>
